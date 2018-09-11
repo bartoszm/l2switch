@@ -16,7 +16,7 @@
   </prerequisites>
 
   <properties>
-    <karaf.localFeature>odl-l2switch-switch-ui</karaf.localFeature>
+    <karaf.localFeature>odl-l2switch-switch-rest</karaf.localFeature>
   </properties>
 
   <dependencies>

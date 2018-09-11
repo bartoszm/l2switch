@@ -59,7 +59,7 @@ public class AddressObserverUsingIpv4 implements Ipv4PacketListener {
 
         if (!IPV4_IP_TO_IGNORE.equals(ipv4Packet.getSourceIpv4().getValue())) {
             addressObservationWriter.addAddress(ethernetPacket.getSourceMac(),
-                    new IpAddress(ipv4Packet.getSourceIpv4().getValue().toCharArray()), rawPacket.getIngress());
+                    new IpAddress(ipv4Packet.getSourceIpv4()), rawPacket.getIngress());
         }
     }
 }

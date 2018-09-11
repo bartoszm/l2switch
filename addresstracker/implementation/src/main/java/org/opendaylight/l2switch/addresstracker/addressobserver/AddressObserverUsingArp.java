@@ -8,6 +8,8 @@
 package org.opendaylight.l2switch.addresstracker.addressobserver;
 
 import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev130715.IpAddress;
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev130715.Ipv4Address;
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev130715.Ipv6Address;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.packet.arp.rev140528.ArpPacketListener;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.packet.arp.rev140528.ArpPacketReceived;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.packet.arp.rev140528.arp.packet.received.packet.chain.packet.ArpPacket;
@@ -56,7 +58,17 @@ public class AddressObserverUsingArp implements ArpPacketListener {
             return;
         }
 
-        addressObservationWriter.addAddress(ethernetPacket.getSourceMac(),
-                new IpAddress(arpPacket.getSourceProtocolAddress().toCharArray()), rawPacket.getIngress());
+        try {
+            Ipv4Address ipv4 = new Ipv4Address(arpPacket.getSourceProtocolAddress());
+            addressObservationWriter.addAddress(ethernetPacket.getSourceMac(),
+                    new IpAddress(ipv4), rawPacket.getIngress());
+        } catch (IllegalArgumentException e) {
+            Ipv6Address ipv6 = new Ipv6Address(arpPacket.getSourceProtocolAddress());
+            addressObservationWriter.addAddress(ethernetPacket.getSourceMac(),
+                    new IpAddress(ipv6), rawPacket.getIngress());
+        }
+
+
+
     }
 }
