@@ -57,7 +57,7 @@ public class InitialFlowWriterTest {
         when(mockChange.getRootNode()).thenReturn(mockModification);
 
         initialFlowWriter.onDataTreeChanged(Collections.singletonList(mockChange));
-        Thread.sleep(250);
+        Thread.sleep(500);
         verify(salFlowService, times(1)).addFlow(any(AddFlowInput.class));
 
     }
