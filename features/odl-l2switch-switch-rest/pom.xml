@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.opendaylight.netconf</groupId>
             <artifactId>odl-restconf</artifactId>
-            <version>1.8.1-SNAPSHOT</version>
+            <version>1.8.1</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
