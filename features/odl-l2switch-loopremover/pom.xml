@@ -12,13 +12,13 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>single-feature-parent</artifactId>
-        <version>3.1.5</version>
+        <version>4.0.10</version>
         <relativePath/>
     </parent>
 
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>odl-l2switch-loopremover</artifactId>
-    <version>0.8.2-SNAPSHOT</version>
+    <version>0.9.1-SNAPSHOT</version>
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: L2Switch :: LoopRemover</name>
@@ -27,21 +27,21 @@
         <dependency>
             <groupId>org.opendaylight.openflowplugin</groupId>
             <artifactId>odl-openflowplugin-flow-services</artifactId>
-            <version>0.7.2</version>
+            <version>0.8.1</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.odlparent</groupId>
             <artifactId>odl-jung-2.1</artifactId>
-            <version>3.1.5</version>
+            <version>4.0.10</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.l2switch.loopremover</groupId>
             <artifactId>loopremover-impl</artifactId>
-            <version>0.8.2-SNAPSHOT</version>
+            <version>0.9.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>

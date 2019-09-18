@@ -174,8 +174,8 @@ public class AddressObservationWriter {
 
                 @Override
                 public void onFailure(Throwable throwable) {
-                    LOG.error("AddressObservationWriter write transaction {} failed",
-                            writeTransaction.getIdentifier(), throwable.getCause());
+                    LOG.error("AddressObservationWriter write transaction {} failed. reason {}",
+                            writeTransaction.getIdentifier(), throwable.getMessage());
                 }
             }, MoreExecutors.directExecutor());
             futureMap.put(nodeConnectorLock, writeTxResultFuture);

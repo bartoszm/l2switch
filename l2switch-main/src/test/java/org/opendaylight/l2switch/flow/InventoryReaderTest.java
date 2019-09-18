@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
 import org.opendaylight.controller.md.sal.binding.api.ReadOnlyTransaction;
@@ -46,15 +47,15 @@ import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
 public class InventoryReaderTest {
 
-    @MockitoAnnotations.Mock
+    @Mock
     private DataBroker dataService;
-    @MockitoAnnotations.Mock
+    @Mock
     private ReadOnlyTransaction readOnlyTransaction;
-    @MockitoAnnotations.Mock
+    @Mock
     private Optional<Node> dataObjectOptional;
-    @MockitoAnnotations.Mock
+    @Mock
     private CheckedFuture checkedFuture;
-    @MockitoAnnotations.Mock
+    @Mock
     private Node node;
 
     private InventoryReader inventoryReader;

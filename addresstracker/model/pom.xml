@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>l2switch-parent</artifactId>
-    <version>0.8.2-SNAPSHOT</version>
+    <version>0.9.1-SNAPSHOT</version>
     <relativePath>../../parent</relativePath>
   </parent>
   <groupId>org.opendaylight.l2switch.addresstracker</groupId>
@@ -17,8 +17,8 @@
       <artifactId>model-inventory</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.opendaylight.mdsal.model</groupId>
-      <artifactId>ietf-yang-types-20130715</artifactId>
+      <groupId>org.opendaylight.mdsal.binding.model.ietf</groupId>
+      <artifactId>rfc6991-ietf-yang-types</artifactId>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.l2switch.packethandler</groupId>

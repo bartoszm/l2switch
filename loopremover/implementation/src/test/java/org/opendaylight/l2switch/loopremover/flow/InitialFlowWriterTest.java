@@ -12,9 +12,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.google.common.util.concurrent.Futures;
 import java.util.Collections;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.opendaylight.controller.md.sal.binding.api.DataObjectModification;
@@ -32,7 +36,7 @@ import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
 public class InitialFlowWriterTest {
 
-    @MockitoAnnotations.Mock private SalFlowService salFlowService;
+    @Mock private SalFlowService salFlowService;
     private InitialFlowWriter initialFlowWriter;
 
     @Before
@@ -55,10 +59,18 @@ public class InitialFlowWriterTest {
         when(mockModification.getModificationType()).thenReturn(DataObjectModification.ModificationType.WRITE);
         when(mockChange.getRootPath()).thenReturn(new DataTreeIdentifier<>(LogicalDatastoreType.CONFIGURATION,
                 instanceId));
-        when(mockChange.getRootNode()).thenReturn(mockModification);
 
+        CountDownLatch latch = new CountDownLatch(1);
+        when(salFlowService.addFlow(any(AddFlowInput.class))).thenAnswer(a -> {
+            latch.countDown();
+            return Futures.immediateFuture(null);
+        });
+
+        when(mockChange.getRootNode()).thenReturn(mockModification);
         initialFlowWriter.onDataTreeChanged(Collections.singletonList(mockChange));
-        Thread.sleep(500);
+
+        //then
+        latch.await(1, TimeUnit.SECONDS);
         verify(salFlowService, times(1)).addFlow(any(AddFlowInput.class));
 
     }

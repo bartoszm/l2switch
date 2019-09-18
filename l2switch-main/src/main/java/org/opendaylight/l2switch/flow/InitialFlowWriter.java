@@ -147,7 +147,8 @@ public class InitialFlowWriter implements DataTreeChangeListener<Node> {
             for (InstanceIdentifier<?> nodeId : nodeIds) {
                 if (Node.class.isAssignableFrom(nodeId.getTargetType())) {
                     InstanceIdentifier<Node> invNodeId = (InstanceIdentifier<Node>) nodeId;
-                    if (invNodeId.firstKeyOf(Node.class, NodeKey.class).getId().getValue().contains("openflow:")) {
+                    NodeKey key = invNodeId.firstKeyOf(Node.class);
+                    if (key != null && key.getId().getValue().contains("openflow:")) {
                         addInitialFlows(invNodeId);
                     }
                 }
@@ -236,7 +237,7 @@ public class InitialFlowWriter implements DataTreeChangeListener<Node> {
                                                                        InstanceIdentifier<Table> tableInstanceId,
                                                                        InstanceIdentifier<Flow> flowPath,
                                                                        Flow flow) {
-            LOG.trace("Adding flow to node {}",nodeInstanceId.firstKeyOf(Node.class, NodeKey.class).getId().getValue());
+            LOG.trace("Adding flow to node {}",nodeInstanceId.firstKeyOf(Node.class).getId().getValue());
             final AddFlowInputBuilder builder = new AddFlowInputBuilder(flow);
             builder.setNode(new NodeRef(nodeInstanceId));
             builder.setFlowRef(new FlowRef(flowPath));

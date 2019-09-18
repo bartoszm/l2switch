@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.opendaylight.controller.md.sal.binding.api.DataBroker;
@@ -48,7 +49,7 @@ import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
 public class InventoryReaderTest {
 
-    @MockitoAnnotations.Mock
+    @Mock
     private DataBroker dataBroker;
     private InventoryReader inventoryReader;
 

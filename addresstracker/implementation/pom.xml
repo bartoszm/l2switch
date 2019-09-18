@@ -4,12 +4,17 @@
   <parent>
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>l2switch-parent</artifactId>
-    <version>0.8.2-SNAPSHOT</version>
+    <version>0.9.1-SNAPSHOT</version>
     <relativePath>../../parent</relativePath>
   </parent>
   <groupId>org.opendaylight.l2switch.addresstracker</groupId>
   <artifactId>addresstracker-impl</artifactId>
   <packaging>bundle</packaging>
+
+  <properties>
+    <test.skip>true</test.skip>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.controller</groupId>
